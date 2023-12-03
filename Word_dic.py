@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import torch
 import torch.nn as nn
 from torch import optim
@@ -57,3 +58,26 @@ lang.add_sentence(qe[10])
 print('==='*10)
 print('Word Dictionary')
 print(lang.word2index)
+
+
+# padding to sequences
+max_length = 10
+sentence_length = 6
+
+sentence_tokens = np.random.randint(low=3, high=100, size=(sentence_length,))
+sentence_tokens = sentence_tokens.tolist()
+print(f'Generated Sentence: {sentence_tokens}')
+
+sentence_tokens = sentence_tokens[:(max_length-1)]
+
+token_length = len(sentence_tokens)
+
+# 문장의 맨 끝부분에 <EOS> 토큰 추가
+sentence_tokens.append(2)
+
+for i in range(token_length, max_length-1):
+    # 나머지 빈 곳에 <PAD> 토큰 추가
+    sentence_tokens.append(0)
+
+print(f'Output: {sentence_tokens}')
+print(f'Total Length: {len(sentence_tokens)}')
