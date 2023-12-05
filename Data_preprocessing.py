@@ -13,18 +13,7 @@ df = pd.read_csv(csv_Path)
 qe = df['Q']
 aw = df['A']
 
-kr_pattern = r'[^ ?,.!A-Za-z0-9가-힣+]'
 
-# 패턴 컴파일
-normalizer = re.compile(kr_pattern)
-def normalize(sentence):
-  return normalizer.sub("", sentence)
-def clean_text(sentence, tagger):
-  sentence = normalize(sentence)
-  sentence = tagger.morphs(sentence)
-  sentence = ' '.join(sentence)
-  sentence = sentence.lower()
-  return sentence
 class TextDataset(Dataset):
   def __init__(self, csv_path, min_length=3, max_length=32):
     super(TextDataset, self).__init__()
