@@ -103,3 +103,19 @@ class TextDataset(Dataset):
 
   def __len__(self):
     return len(self.srcs)
+  
+  
+# 사용법
+# 한 문장의 최대 단어길이를 25로 설정
+MAX_LENGTH = 25
+
+dataset = TextDataset('ChatbotData.csv', min_length=3, max_length=MAX_LENGTH)
+
+# 10번째 데이터 임의 추출
+x, y = dataset[10]
+
+print(f'x shape: {x.shape}')
+print(x)
+
+print(f'y shape: {y.shape}')
+print(y)
