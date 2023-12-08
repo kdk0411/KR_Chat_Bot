@@ -117,7 +117,7 @@ def random_evaluation(model, dataset, index2word, device, n=10):
       preds = output.detach().cpu().numpy()
       x = x.detach().cpu().numpy()
       y = y.detach().cpu().numpy()
-
+      # 질문에 대한 답변 추가
       for i in range(n):
         print(f'질문   : {sequence_to_sentence(x[i], index2word)}')
         print(f'답변   : {sequence_to_sentence(y[i], index2word)}')
